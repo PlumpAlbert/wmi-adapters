@@ -1,0 +1,22 @@
+﻿<Window x:Class="adapterconfig.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="clr-namespace:adapterconfig.CustomUI" mc:Ignorable="d"
+    xmlns:conv="clr-namespace:adapterconfig.Converters"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
+    Title="MainWindow" Height="450" Width="800">
+  <Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+        HorizontalScrollBarVisibility="Auto">
+      <ItemsControl ItemsSource="{Binding AdapterVMs}" Margin="0 8">
+        <ItemsControl.ItemTemplate>
+          <DataTemplate>
+            <custom:NetworkAdapter Margin="16 4" />
+          </DataTemplate>
+        </ItemsControl.ItemTemplate>
+      </ItemsControl>
+    </ScrollViewer>
+  </Grid>
+</Window>

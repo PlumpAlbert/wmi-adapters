@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="adapterconfig.CustomUI.NetworkAdapter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" mc:Ignorable="d"
+    Background="{StaticResource Light}" x:Name="self" MinHeight="75"
+    MinWidth="150">
+  <UserControl.Resources>
+
+    <Style x:Key="header" TargetType="{x:Type TextBlock}">
+      <Setter Property="FontSize" Value="20" />
+    </Style>
+
+    <Style x:Key="row" TargetType="StackPanel">
+      <Setter Property="Orientation" Value="Horizontal" />
+      <Setter Property="Margin" Value="0 0 0 4" />
+    </Style>
+
+    <Style x:Key="attribute" TargetType="TextBlock">
+      <Setter Property="Margin" Value="0 0 8 0" />
+    </Style>
+
+
+  </UserControl.Resources>
+  <Border CornerRadius="4" Padding="{Binding ElementName=self, Path=Margin}"
+      Background="{Binding ElementName=self, Path=Background}">
+    <Border.Effect>
+      <DropShadowEffect Color="{StaticResource ShadowColor}" BlurRadius="4"
+          ShadowDepth="1" Direction="-90" RenderingBias="Quality" Opacity="0.3" />
+    </Border.Effect>
+    <StackPanel Orientation="Vertical">
+      <TextBlock Text="{Binding Description}" Style="{StaticResource header}" />
+      <StackPanel Style="{StaticResource row}" Margin="0 8 0 4">
+        <TextBlock Style="{StaticResource attribute}" Text="IP:" />
+        <ItemsControl ItemsSource="{Binding IPAddress, Mode=OneWay}" />
+      </StackPanel>
+      <StackPanel Style="{StaticResource row}">
+        <TextBlock Style="{StaticResource attribute}" Text="DNS Domain:" />
+        <TextBox Style="{StaticResource value_box}"
+            Text="{Binding DNSDomain, Mode=TwoWay}" />
+      </StackPanel>
+    </StackPanel>
+  </Border>
+</UserControl>

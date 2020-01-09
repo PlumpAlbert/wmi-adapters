@@ -1,0 +1,50 @@
+﻿<Window x:Class="adapterconfig.Views.Connection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:adapterconfig.Views" x:Name="self"
+    Foreground="{StaticResource Dark}" mc:Ignorable="d" Title="Подключение"
+    Height="220" Width="400" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+    ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Connection}">
+  <Grid Margin="16 10">
+    <Grid.Resources>
+      <Style TargetType="Grid">
+        <Setter Property="Margin" Value="0, 4" />
+      </Style>
+      <Style TargetType="Label">
+        <Setter Property="Foreground" Value="{StaticResource Dark}" />
+        <Setter Property="Margin" Value="0, 0, 8, 0" />
+      </Style>
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" MaxWidth="200" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+
+    <Label Grid.Column="0" Content="Имя компьютера или IP-адрес:" />
+    <TextBox Grid.Column="1" Style="{StaticResource value_box}"
+        Text="{Binding IpAddress}" />
+
+    <Label Grid.Row="1" Grid.Column="0" Content="Имя пользователя:" />
+    <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource value_box}"
+        Text="{Binding Username}" />
+
+    <Label Grid.Row="2" Grid.Column="0" Content="Пароль:" />
+    <PasswordBox Grid.Row="2" Grid.Column="1" Style="{StaticResource value_box}"
+        PasswordChanged="PasswordBox_PasswordChanged" />
+
+    <Button Grid.Row="3" Grid.ColumnSpan="2" Command="{Binding Connect}"
+        CommandParameter="{Binding ElementName=self}"
+        Style="{StaticResource button}" Content="Подключиться"
+        Margin="12 12 12 0" HorizontalAlignment="Center"
+        VerticalAlignment="Bottom" />
+  </Grid>
+</Window>
